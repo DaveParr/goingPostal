@@ -77,7 +77,7 @@ To calculate the distance between each postcode sector and each weather station 
 
 * `geosphere` contains functions to calculate distance matrices
 
-```{r postcodeMatching_Libs, results ='asis', warning=FALSE, message=FALSE}
+```{r postcodeMatching_Libs, warning=FALSE, message=FALSE}
 ```
 
 ## Calculating the distance matrix
