@@ -130,7 +130,7 @@ Plot each sector on a map of the UK and identify which weather station it belong
 
 * Use `ggmap` to plot data onto maps
 
-```{r mappingSectors_Libs}
+```{r mappingSectors_Libs, warnings=FALSE, message=FALSE}
 ```
 
 ## Calculating the geographical bounding box
