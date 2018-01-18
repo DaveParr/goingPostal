@@ -15,16 +15,16 @@ ukpostcodes[, sector := paste(outward, substr(inward, 1, 1))]
 ukpostcodes[1:3]
 
 ## @knitr nonGeo_filter
-nonGeo <- c("AB99", "BT58", "CA99", "CM92", "CM98", "CR44", "CR90", "GIR", 
-            "IM99", "IV99", "JE5", "M61", "ME99", "N1C", "N81", "NR99", 
-            "NW26", "PA80", "PE99", "RH77", "SL60", "SO97", "SW95", "SY99", 
-            "WD99", "WF90")
+nonGeo <- c("AB99", "BT58", "CA99", "CM92", "CM98", "CR44", "CR90", 
+            "GIR", "IM99", "IV99", "JE5", "M61", "ME99", "N1C", 
+            "N81", "NR99", "NW26", "PA80", "PE99", "RH77", "SL60", 
+            "SO97", "SW95", "SY99", "WD99", "WF90")
 ukpostcodesSub <- ukpostcodes[!outward %in% nonGeo]
 
 ## @knitr postcodeStrings_AvLL
-sectorPostcodes <- ukpostcodesSub[, .(sector_latitude = mean(latitude), 
-                                      sector_longitude = mean(longitude)), 
-                                  by = sector] # by is a catagorical grouping
+sectorPostcodes <- ukpostcodesSub[, .(sector_latitude = mean(latitude),
+                                      sector_longitude = mean(longitude)),
+                                  by = sector] # catagorical grouping
 sectorPostcodes[, .N]
 sectorPostcodes[1:3]
 

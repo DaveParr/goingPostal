@@ -91,7 +91,6 @@ To calculate the distance between each postcode sector and each weather station 
 
 <small>In `postcodeDistances`, each column is a different station and each row is a different postcode</small>
 
-
 ## Selecting minimum distance
 
 * `melt()` converts wide data structure to long

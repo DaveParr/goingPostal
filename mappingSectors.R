@@ -7,10 +7,12 @@ postcodeStation_match <- fread("./Processed_Data/Sector by nearest station.csv")
 stationLocation <- fread("./Raw_Data/stationLocations.csv")
 
 ## @knitr mappingSectors_boundingBox
-myLocation <- c(postcodeStation_match[, round(min(sector_longitude)) - 0.5],
-                postcodeStation_match[, round(min(sector_latitude)) - 0.5],
-                postcodeStation_match[, round(max(sector_longitude)) + 0.5],
-                postcodeStation_match[, round(max(sector_latitude)) + 0.5])
+myLocation <- c(
+  postcodeStation_match[, round(min(sector_longitude)) - 0.5],
+  postcodeStation_match[, round(min(sector_latitude)) - 0.5],
+  postcodeStation_match[, round(max(sector_longitude)) + 0.5],
+  postcodeStation_match[, round(max(sector_latitude)) + 0.5]
+)
 
 ## @knitr mappingSectors_tiles
 myMap <- get_map(location=myLocation, 

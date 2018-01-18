@@ -5,6 +5,7 @@ library(geosphere)
 postcodesSector <- data.table::fread("./Processed_Data/Postcodes by sector.csv", verbose = FALSE, showProgress = FALSE)
 stationLocation <- data.table::fread("./Raw_Data/stationLocations.csv", verbose = FALSE, showProgress = FALSE)
 setnames(stationLocation, old = c("lat", "lon"), new = c("landstat_lat", "landstat_lon"))
+
 stationLocation[1:3]
 
 ## @knitr postcodeMatching_DistM
@@ -16,13 +17,16 @@ head(postcodeDistances, n=1)
 
 ## @knitr postcodeMatching_Melt
 postcodeDistances_melt <- data.table(melt(postcodeDistances))
-setnames(postcodeDistances_melt, old = c("Var1", "Var2", "value"), 
-         new = c("postcodeRow", "stationRowMelt", "Distance"))
+setnames(
+  postcodeDistances_melt,
+  old = c("Var1", "Var2", "value"),
+  new = c("postcodeRow", "stationRowMelt", "Distance")
+)
 postcodeDistances_melt[1:2]
 
 ## @knitr postcodeMatching_Minimum
 postcodeStation_link <- 
-  postcodeDistances_melt[, .(stationRow=which.min(Distance)), 
+  postcodeDistances_melt[, .(stationRow = which.min(Distance)),
                          by = "postcodeRow"]
 postcodeStation_link[, .N]
 
@@ -31,7 +35,8 @@ postcodesSector[, postcodeRow := .I]
 stationLocation[, stationRow := .I]
 
 ## @knitr postcodeMatching_Merge
-postcodeStation <- postcodesSector[postcodeStation_link, on ="postcodeRow"]
+postcodeStation <- postcodesSector[postcodeStation_link, 
+                                   on = "postcodeRow"]
 postcodeStation <- stationLocation[postcodeStation, on="stationRow"]
 postcodeStation[1:3]
 
